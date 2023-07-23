@@ -1,6 +1,5 @@
 // Declaracion de variables | Objetos | Array:
 const precioEntrada = 500;
-const itemsDisponibles = ["Pochoclos", "Chocolate", "Gaseosa", "Agua"];
 const cartelera = ["Jurassic Park", "Rocky", "Titanic"];
 const respSaludar = document.getElementById("respuestaSaludar");
 const respPeliculas = document.getElementById("respuestaPelicula");
@@ -10,6 +9,25 @@ const respAzar = document.getElementById("respuestaPelicula");
 
 let pelicula, asientos;
 let frase1, frase2, frase3, frase4;
+
+const itemsDisponibles = [
+	{
+		producto: "Pochoclos",
+		precio: 200
+	},
+	{
+		producto: "Chocolate",
+		precio: 50
+	},
+	{
+		producto: "Gaseosa",
+		precio: 150
+	},
+	{
+		producto: "Agua",
+		precio: 100
+	}
+];
 
 // Funciones:
 function valor(a, b) {
@@ -46,23 +64,38 @@ function comprarEntradas() {
 
 function seleccionarAlimento() {
 	let carrito = [];
-
+	let valor = [];
+	let res = 0;
+	
 	let i = 0;
 	while (i < itemsDisponibles.length) {
 		let seleccion = confirm(
 			"¿Deseas agregar a la reserva " +
-				itemsDisponibles[i] +
+				itemsDisponibles[i].producto + " ($" + itemsDisponibles[i].precio + ") " +
 				" para acompañar la pelicula?"
 		);
 
 		if (seleccion) {
-			carrito.push(itemsDisponibles[i]);
+			carrito.push(itemsDisponibles[i].producto); // Metodo .push()
+			valor.push(itemsDisponibles[i].precio);
 		}
 
 		i+=1;
 	}
 
-	frase3 = "Reserva: <br>" + carrito.join(" + ") + ". (Podes abonar y retirar por el candy hasta 5 min antes de la pelicula).";
+	for (let i = 0; i < valor.length; i++) {
+		res += valor[i];
+	}
+
+	frase3 = "Reserva: <br>";
+	for (let i = 0; i < carrito.length; i++) {
+		frase3 += `${carrito[i]} ($${valor[i]})`;
+		if (i < carrito.length - 1) {
+			frase3 += " + ";
+		}
+	}
+
+	frase3 += " Total = <strong>$" + res + "</strong>.<br> (Podes abonar y retirar por el candy hasta 5 min antes de la pelicula).";
 	respCandy.innerHTML = frase3;
 }
 
