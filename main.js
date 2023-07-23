@@ -1,12 +1,12 @@
 // Declaracion de variables | Objetos | Array:
 const precioEntrada = 500;
 const itemsDisponibles = ["Pochoclos", "Chocolate", "Gaseosa", "Agua"];
-const cartelera = ["JURASSIC PARK", "ROCKY", "TITANIC"];
+const cartelera = ["Jurassic Park", "Rocky", "Titanic"];
 const respSaludar = document.getElementById("respuestaSaludar");
 const respPeliculas = document.getElementById("respuestaPelicula");
 const respAsientos = document.getElementById("respuestaAsientos");
 const respCandy = document.getElementById("respuestaCandy");
-const respAzar = document.getElementById("azar");
+const respAzar = document.getElementById("respuestaPelicula");
 
 let pelicula, asientos;
 let frase1, frase2, frase3, frase4;
@@ -30,7 +30,7 @@ function saludar() {
 
 function comprarEntradas() {
 	let pelicula = prompt("Selecciona la pelicula: Jurassic Park | Rocky | titanic").toUpperCase();
-	const respPeliculas = document.getElementById("respuestaPelicula");
+	
 
 	if (pelicula === "JURASSIC PARK" || pelicula === "ROCKY" || pelicula === "TITANIC") {
 		frase1 = "La pelicula seleccionada es: <strong>" + pelicula + "</strong>.";
@@ -68,7 +68,7 @@ function seleccionarAlimento() {
 
 function probarSuerte() {
 	const indice = Math.floor(Math.random() * cartelera.length);
-	const peliculaAzar = cartelera[indice];
+	const peliculaAzar = cartelera[indice].toUpperCase();
 	
 	frase4 = "La pelicula seleccionada es: <strong>" + peliculaAzar + "</strong>.";
 	respAzar.innerHTML = frase4;
